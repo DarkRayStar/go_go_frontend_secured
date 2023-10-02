@@ -4,6 +4,7 @@ import styles from "./style.module.css";
 import axios from "axios";
 import LoginNavBarGoGo from "../../navigatonBar/loginNav";
 import Swal from "sweetalert2";
+import LoginButton from "./LoginButton";
 
 const SignIn = () => {
   const [data, setData] = useState({
@@ -120,10 +121,11 @@ const SignIn = () => {
 
               {error && <div className={styles.err_msg}>{error}</div>}
 
-              <button type="submit" className={styles.g_button}>
+              <button type="submit" className={styles.g_button} style={{ marginBottom: "20px"}}>
                 Sign in
               </button>
             </form>
+            <LoginButton/>
           </div>
 
           <div className={styles.right}>
