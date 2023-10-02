@@ -44,12 +44,12 @@ export default function UpdateDelivery() {
       mobileNumber: mobileNo,
       landlineNumber: landlineNo,
       email: email,
-      address: address,
+      address: DOMPurify.sanitize(address),
       district: district,
       province: province,
       zip: zip,
       service: service,
-      trackingID: trackingID,
+      trackingID: DOMPurify.sanitize(trackingID),
       fee: fee,
       status:status
     };
@@ -60,7 +60,7 @@ export default function UpdateDelivery() {
     if (answer) {
       axios
         .post(`http://localhost:5050/delivery/update/${deliveryID}`, delivery);
-        
+
       window.location = "/delivery-ongoing";
     } else {
       window.location.reload(true);
