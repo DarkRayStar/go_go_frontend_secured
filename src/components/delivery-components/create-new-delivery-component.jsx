@@ -60,17 +60,17 @@ export default function NewDelivery() {
     if (answer) {
       const delivery = {
         customerName: DOMPurify.sanitize(customerName),
-        mobileNumber: DOMPurify.sanitize(mobileNo),
-        landlineNumber: DOMPurify.sanitize(landlineNo),
-        email: DOMPurify.sanitize(email),
+        mobileNumber: mobileNo,
+        landlineNumber: landlineNo,
+        email: email,
         address: DOMPurify.sanitize(address),
-        district: DOMPurify.sanitize(district),
-        province: DOMPurify.sanitize(province),
-        zip: DOMPurify.sanitize(zip),
-        service: DOMPurify.sanitize(service),
+        district: district,
+        province: province,
+        zip: zip,
+        service: service,
         trackingID: DOMPurify.sanitize(trackingID),
-        fee: DOMPurify.sanitize(fee),
-        status: DOMPurify.sanitize(status),
+        fee: fee,
+        status: status,
       };
 
       axios
