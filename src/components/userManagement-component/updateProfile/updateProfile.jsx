@@ -4,6 +4,7 @@ import axios from "axios";
 import NavBarGoGo from "../../navigatonBar/navbarGoGo";
 import styles from "./styles.module.css";
 import Swal from "sweetalert2";
+import DOMPurify from 'dompurify';
 
 const UpdateUserProfile = () => {
 
@@ -42,7 +43,7 @@ const UpdateUserProfile = () => {
         setZipCode(event.target.value)
     }
     const imageUpdate = (event) => {
-        setImage(event.target.value)
+        setImage(DOMPurify.sanitize(event.target.value))
     }
 
     const getUser = async () => {

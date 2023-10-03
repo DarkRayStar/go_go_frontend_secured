@@ -7,6 +7,7 @@ import "./delivery-styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons";
 import DeliveryAdminNavBarGoGo from "../navigatonBar/deliveryAdminNav";
+import DOMPurify from 'dompurify';
 
 export default function NewDelivery() {
   let history = useHistory();
@@ -29,7 +30,7 @@ export default function NewDelivery() {
   }, []); //logResult is memoized now.
 
   useEffect(() => {
-    if (sessionStorage.getItem("currentNewDeliveryId") !== "undefined") {
+    if (sessionStorage.getItem("currentNewDeliveryId") !== null) {
       axios
         .get(
           `http://localhost:5050/user/get-user-by-id/${sessionStorage.getItem(
@@ -58,23 +59,22 @@ export default function NewDelivery() {
     const answer = window.confirm("Are you sure to create new the delivery?");
     if (answer) {
       const delivery = {
-        customerName: customerName,
+        customerName: DOMPurify.sanitize(customerName),
         mobileNumber: mobileNo,
         landlineNumber: landlineNo,
         email: email,
-        address: address,
+        address: DOMPurify.sanitize(address),
         district: district,
         province: province,
         zip: zip,
         service: service,
-        trackingID: trackingID,
+        trackingID: DOMPurify.sanitize(trackingID),
         fee: fee,
         status: status,
       };
 
       axios
-        .post("http://localhost:5050/delivery/add", delivery)
-        .then((res) => console.log(res.data));
+        .post("http://localhost:5050/delivery/add", delivery);
 
       if (sessionStorage.getItem("currentNewDeliveryId") !== undefined) {
         axios

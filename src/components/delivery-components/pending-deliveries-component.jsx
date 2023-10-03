@@ -92,9 +92,6 @@ const PendingDeliveries = () => {
           ></i>
         </span>,
       ],
-      onClick: (event) => {
-        console.log(event);
-      },
     },
     {
       className: "btn btn-primary buttons-pdf",
@@ -107,17 +104,10 @@ const PendingDeliveries = () => {
           ></i>
         </span>,
       ],
-      onClick: (event) => {
-        console.log(event);
-      },
-      onDoubleClick: (event) => {
-        console.log("doubleClick");
-      },
     },
   ];
 
   const arrangeDelivery = (record) => {
-    console.log(record.userId);
     sessionStorage.setItem("currentNewDeliveryId", record.userId);
     sessionStorage.setItem("currentPendingDeliveryRecordID",record._id);
     window.location = "/delivery-new";

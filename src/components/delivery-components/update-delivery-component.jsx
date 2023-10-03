@@ -7,6 +7,7 @@ import "./delivery-styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleLeft } from "@fortawesome/free-regular-svg-icons";
 import DeliveryAdminNavBarGoGo from "../navigatonBar/deliveryAdminNav";
+import DOMPurify from 'dompurify';
 
 export default function UpdateDelivery() {
   let history = useHistory();
@@ -39,29 +40,26 @@ export default function UpdateDelivery() {
 
   const onSubmit = () => {
     const delivery = {
-      customerName: customerName,
+      customerName: DOMPurify.sanitize(customerName),
       mobileNumber: mobileNo,
       landlineNumber: landlineNo,
       email: email,
-      address: address,
+      address: DOMPurify.sanitize(address),
       district: district,
       province: province,
       zip: zip,
       service: service,
-      trackingID: trackingID,
+      trackingID: DOMPurify.sanitize(trackingID),
       fee: fee,
       status:status
     };
-
-    console.log(delivery);
 
     const answer = window.confirm(
       "You are about to update an existing delivery information. Do you want to proceed?"
     );
     if (answer) {
       axios
-        .post(`http://localhost:5050/delivery/update/${deliveryID}`, delivery)
-        .then((res) => console.log(res.data));
+        .post(`http://localhost:5050/delivery/update/${deliveryID}`, delivery);
 
       window.location = "/delivery-ongoing";
     } else {
