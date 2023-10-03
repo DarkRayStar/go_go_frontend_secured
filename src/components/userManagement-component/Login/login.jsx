@@ -121,11 +121,15 @@ const SignIn = () => {
 
               {error && <div className={styles.err_msg}>{error}</div>}
 
-              <button type="submit" className={styles.g_button} style={{ marginBottom: "20px"}}>
+              <button
+                type="submit"
+                className={styles.g_button}
+                style={{ marginBottom: "20px" }}
+              >
                 Sign in
               </button>
             </form>
-            <LoginButton/>
+            <LoginButton />
           </div>
 
           <div className={styles.right}>
