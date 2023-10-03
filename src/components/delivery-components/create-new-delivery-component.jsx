@@ -60,17 +60,17 @@ export default function NewDelivery() {
     if (answer) {
       const delivery = {
         customerName: DOMPurify.sanitize(customerName),
-        mobileNumber: mobileNo,
-        landlineNumber: landlineNo,
-        email: email,
+        mobileNumber: DOMPurify.sanitize(mobileNo),
+        landlineNumber: DOMPurify.sanitize(landlineNo),
+        email: DOMPurify.sanitize(email),
         address: DOMPurify.sanitize(address),
-        district: district,
-        province: province,
-        zip: zip,
-        service: service,
+        district: DOMPurify.sanitize(district),
+        province: DOMPurify.sanitize(province),
+        zip: DOMPurify.sanitize(zip),
+        service: DOMPurify.sanitize(service),
         trackingID: DOMPurify.sanitize(trackingID),
-        fee: fee,
-        status: status,
+        fee: DOMPurify.sanitize(fee),
+        status: DOMPurify.sanitize(status),
       };
 
       axios
@@ -263,7 +263,7 @@ export default function NewDelivery() {
                 <Grid item xs={3}>
                   <input
                     style={{ borderRadius: "5px", border: " solid 1px" }}
-                    type="text"
+                    type="number"
                     placeholder="Postal/Zip Code"
                     {...register("Postal/Zip Code", {})}
                     onChange={(e) => setZip(e.target.value)}
