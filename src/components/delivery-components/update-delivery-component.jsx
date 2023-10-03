@@ -41,17 +41,17 @@ export default function UpdateDelivery() {
   const onSubmit = () => {
     const delivery = {
       customerName: DOMPurify.sanitize(customerName),
-      mobileNumber: mobileNo,
-      landlineNumber: landlineNo,
-      email: email,
+      mobileNumber: DOMPurify.sanitize(mobileNo),
+      landlineNumber: DOMPurify.sanitize(landlineNo),
+      email: DOMPurify.sanitize(email),
       address: DOMPurify.sanitize(address),
-      district: district,
-      province: province,
-      zip: zip,
-      service: service,
+      district: DOMPurify.sanitize(district),
+      province: DOMPurify.sanitize(province),
+      zip: DOMPurify.sanitize(zip),
+      service: DOMPurify.sanitize(service),
       trackingID: DOMPurify.sanitize(trackingID),
-      fee: fee,
-      status:status
+      fee: DOMPurify.sanitize(fee),
+      status:DOMPurify.sanitize(status)
     };
 
     const answer = window.confirm(

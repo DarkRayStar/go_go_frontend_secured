@@ -8,7 +8,6 @@ import { Col, Container, Row } from "react-bootstrap";
 import LoginNavBarGoGo from "../../navigatonBar/loginNav";
 import Swal from "sweetalert2";
 
-
 const Registration = () => {
 
     const currentDate = new Date();
