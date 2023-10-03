@@ -7,12 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
+    script-src 'self' 'unsafe-inline' https://trusted-scripts.com https://accounts.google.com https://accounts.google.com/gsi/style;
     connect-src 'self' http://localhost:5050;
-    img-src 'self' https://example.com https://cdn.example.com https://encrypted-tbn0.gstatic.com;
-    script-src 'self' 'unsafe-inline' https://trusted-scripts.com;
-    style-src 'self' 'unsafe-inline' https://trusted-styles.com;
+    img-src 'self' https://example.com https://cdn.example.com https://encrypted-tbn0.gstatic.com https://images.unsplash.com https://i0.wp.com/appleasia.lk/  https://wallpaper.dog/;
+    style-src 'self' 'unsafe-inline' https://trusted-styles.com https://accounts.google.com/gsi/style https://trusted-scripts.com;
     font-src 'self' https://fonts.gstatic.com;
-    frame-ancestors 'none';">
+    frame-src 'self' https://accounts.google.com;">
 
   <meta http-equiv="X-Frame-Options" content="DENY">
 

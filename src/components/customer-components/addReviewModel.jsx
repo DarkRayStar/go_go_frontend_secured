@@ -48,7 +48,7 @@ function AddReviewsModel() {
         itemId: itemId,
         itemName: itemName,
         review: DOMPurify.sanitize(review),
-        userId: JSON.parse(sessionStorage.getItem('loggeduser'))._id,
+        userId: JSON.parse(sessionStorage.getItem('loggedUser'))._id,
       }),
     })
       .then((res) => {

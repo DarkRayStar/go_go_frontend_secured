@@ -26,10 +26,10 @@ function UserProfile(props) {
     const getUserDetailsByID = async () => {
 
         //get the user details from the session
-        const user = JSON.parse(sessionStorage.getItem("loggeduser"));
+        const user = JSON.parse(sessionStorage.getItem("loggedUser"));
 
         try {
-            const response = await axios.get('http://localhost:5050/user/' + user._id);
+            const response = await axios.get('http://localhost:5050/user/' + user);
             setFirstName(response.data.firstName);
             setLastName(response.data.lastName);
             setMobileNumber(response.data.mobileNumber);
@@ -50,10 +50,10 @@ function UserProfile(props) {
 
 
     const UpdateDetails = () => {
-        const user = JSON.parse(sessionStorage.getItem("loggeduser"));
+        const user = JSON.parse(sessionStorage.getItem("loggedUser"));
         // create session
         window.sessionStorage.setItem(
-            "loggeduser",
+            "loggedUser",
             JSON.stringify(user)
         );
         window.location = '/update-user-profile';
@@ -72,10 +72,10 @@ function UserProfile(props) {
         }).then((result) => {
 
             if (result.isConfirmed) {
-                const user = JSON.parse(sessionStorage.getItem("loggeduser"));
+                const user = JSON.parse(sessionStorage.getItem("loggedUser"));
               
 
-                axios.delete("http://localhost:5050/user/" + user._id)
+                axios.delete("http://localhost:5050/user/" + user)
                     .then((res) => {
                         Swal.fire({
                             title: 'Deleted!',

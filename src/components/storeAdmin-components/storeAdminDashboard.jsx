@@ -6,7 +6,7 @@ import AdminNav from '../navigatonBar/adminNav';
 
 function storeAdminDashboard() {
 
-    const [user] = useState(JSON.parse(window.sessionStorage.getItem("loggeduser")));
+    const [user] = useState(JSON.parse(window.sessionStorage.getItem("loggedUser")));
     console.log('a',user);
 
     const viewItem = () => {

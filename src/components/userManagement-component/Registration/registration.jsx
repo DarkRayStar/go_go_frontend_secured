@@ -73,7 +73,6 @@ const Registration = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("user regidata", data)
         try {
             const url = "http://localhost:5050/user/registration";
             const { data: res } = await axios.post(url, data);

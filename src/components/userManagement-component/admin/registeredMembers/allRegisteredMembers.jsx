@@ -40,7 +40,6 @@ function ViewAllRegisteredMembers() {
                 toDate: data.toDate,
             })
             .then((response) => {
-                console.log(response.data);
                 setSearchData(response.data);
             });
     };

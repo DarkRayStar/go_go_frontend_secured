@@ -36,7 +36,7 @@ export default function OrderedReport(p) {
   };
 
   const [cartItems, setCartItems] = useState([]);
-  const id = JSON.parse(sessionStorage.getItem('loggeduser'))._id;
+  const id = JSON.parse(sessionStorage.getItem('loggedUser'))._id;
 
   const getCartItems = async () => {
     try {

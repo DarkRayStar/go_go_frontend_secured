@@ -34,7 +34,7 @@ const SignIn = () => {
       });
 
       // create session
-      window.sessionStorage.setItem("loggeduser", JSON.stringify(res.user));
+      window.sessionStorage.setItem("loggedUser", JSON.stringify(res.user));
 
       setTimeout(() => {
         if (res.user.userRole === "User Admin") {

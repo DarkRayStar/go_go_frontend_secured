@@ -14,7 +14,7 @@ function userAdminDashboard() {
         window.location = "/user-admin-report"
     }
 
-    const user = JSON.parse(sessionStorage.getItem("loggeduser"));
+    const user = JSON.parse(sessionStorage.getItem("loggedUser"));
 
     return (
         <>

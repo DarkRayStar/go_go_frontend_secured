@@ -22,7 +22,7 @@ function ItemDetails() {
     const id = window.sessionStorage.getItem('itemid');
     const [item, setItem] = useState([]);
     const [OrderedQuanity, setOrderedQuantity] = useState("")
-    const UserId = JSON.parse(sessionStorage.getItem("loggeduser"))._id;
+    const UserId = JSON.parse(sessionStorage.getItem("loggedUser"))._id;
     const [reviews, setReviews] = useState([]);
 
 

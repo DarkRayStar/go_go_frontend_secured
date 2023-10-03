@@ -22,7 +22,7 @@ import './item-cart.css';
 function OrderHistory() {
   const [cartItems, setCartItems] = useState([]);
   const [modal, setModal] = useState(false);
-  const id = JSON.parse(sessionStorage.getItem('loggeduser'))._id;
+  const id = JSON.parse(sessionStorage.getItem('loggedUser'))._id;
 
   const getCartItems = async () => {
     try {

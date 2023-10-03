@@ -1,12 +1,6 @@
 export const SliderData = [
     {
       image:
-        'https://i0.wp.com/appleasia.lk/wp-content/uploads/2022/07/Apple-Watch.jpeg?w=756&ssl=1',
-      title:
-        'Apple iWatches'
-    },
-    {
-      image:
         'https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z2FkZ2V0c3xlbnwwfHwwfHw%3D&w=1000&q=80',
         title:
         'Entertainment'

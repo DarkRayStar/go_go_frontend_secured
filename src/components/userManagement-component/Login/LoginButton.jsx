@@ -1,64 +1,75 @@
 import React from "react";
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-const configFile = require('../../../config.json');
+const configFile = require("../../../config.json");
 
 const LoginButton = () => {
-
   return (
     <div className="App">
-        <GoogleOAuthProvider clientId= {configFile.GOOGLE_OAUTH_CLIENT_ID}>
-            <GoogleLogin
+      <GoogleOAuthProvider clientId={configFile.GOOGLE_OAUTH_CLIENT_ID}>
+        <GoogleLogin
+          onSuccess={(credentialResponse) => {
+            const loggedUserEmail = jwt_decode(
+              credentialResponse.credential
+            ).email;
+            window.sessionStorage.setItem(
+              "oAuthSession",
+              JSON.stringify(jwt_decode(credentialResponse.credential))
+            );
+            window.sessionStorage.setItem(
+              "loggedUserEmail",
+              JSON.stringify(jwt_decode(credentialResponse.credential).email)
+            );
 
-                onSuccess={credentialResponse => {
-                const loggedUser = jwt_decode(credentialResponse.credential).email;
-                window.sessionStorage.setItem("oAuthSession", JSON.stringify(jwt_decode(credentialResponse.credential)));
-                window.sessionStorage.setItem("loggeduser", JSON.stringify(loggedUser));
-                try{setTimeout(() => {
-                    if (loggedUser === "kamal@gmail.com") {
-                      window.location = "/user-admin-dashboard";
-                    } else if (loggedUser === "tharinduadmin@gmail.com") {
-                      window.location = "/storeAdmindash";
-                    } else if (loggedUser === "dulshanalaha@gmail.com") {
-                      window.location = "/delivery-home";
-                    } else {
-                        axios.get(`http://localhost:5050/user/find-by-email/${loggedUser}`)
-                        .then(response => {
-                          const userData = response.data;
-                          console.log(response.data)
-                          if (userData.message == "no-users") {
-                            window.alert("You are not previously registered. Please Register.")
-                            window.location = "/registration";
-                          } else {
-                            window.location = "/userHome";
-                          }
-                        })
-                        .catch(error => {
-                          console.error("Error fetching user data:", error);
-                        });
-                      ;
-                    }
-                  }, 2000);
-                } catch (error) {
-                    if (
-                      error.response &&
-                      error.response.status >= 400 &&
-                      error.response.status <= 500
-                    ) {
-                      setError(error.response.data.message);
-                    }
+            var fetchedUser = "";
+            axios
+              .get(
+                `http://localhost:5050/user/find-by-email/${loggedUserEmail}`
+              )
+              .then((response) => {
+                fetchedUser = response.data;
+              });
+
+            try {
+              setTimeout(() => {
+                if (fetchedUser.userRole === "User Admin") {
+                  window.location = "/user-admin-dashboard";
+                } else if (fetchedUser.userRole === "Store Admind") {
+                  window.location = "/storeAdmindash";
+                } else if (fetchedUser.userRole === "Delivery Admin") {
+                  window.location = "/delivery-home";
+                } else {
+                  window.sessionStorage.setItem(
+                    "loggedUser",
+                    JSON.stringify(fetchedUser._id)
+                  );
+                  if (fetchedUser.message == "no-users") {
+                    window.alert(
+                      "You are not previously registered. Please Register."
+                    );
+                    window.location = "/registration";
+                  } else {
+                    window.location = "/userHome";
                   }
-                }}
-            
-                onError={() => {
-                console.log('Login Failed/ OAuth Authentication Failed');
-                }}
-            
-            />
-          </GoogleOAuthProvider>
-
-      </div>
+                }
+              }, 2000);
+            } catch (error) {
+              if (
+                error.response &&
+                error.response.status >= 400 &&
+                error.response.status <= 500
+              ) {
+                setError(error.response.data.message);
+              }
+            }
+          }}
+          onError={() => {
+            console.log("Login Failed/ OAuth Authentication Failed");
+          }}
+        />
+      </GoogleOAuthProvider>
+    </div>
   );
 };
 

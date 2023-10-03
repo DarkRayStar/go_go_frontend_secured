@@ -13,7 +13,7 @@ function ViewFavItems() {
   const [favItems, setFavItems] = useState([]);
   const [search, setSearch] = useState('');
   const [filteredItems, setFilteredItems] = useState([]);
-  const id = JSON.parse(sessionStorage.getItem('loggeduser'))._id;
+  const id = JSON.parse(sessionStorage.getItem('loggedUser'))._id;
 
   const getFavItems = async () => {
     try {

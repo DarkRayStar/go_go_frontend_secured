@@ -29,7 +29,7 @@ const UpdateUserRole = () => {
 
     const getUser = async () => {
         try {
-            const user = JSON.parse(sessionStorage.getItem("loggeduser"));
+            const user = JSON.parse(sessionStorage.getItem("loggedUser"));
             console.log("user id: ", user);
             const response = await axios.get('http://localhost:5050/user/' + user);
             setFirstName(response.data.firstName);
@@ -66,7 +66,7 @@ const UpdateUserRole = () => {
             userRole: userRole
         }
 
-        const user = JSON.parse(sessionStorage.getItem("loggeduser"));
+        const user = JSON.parse(sessionStorage.getItem("loggedUser"));
 
 
         axios.post('http://localhost:5050/user/update-profile/' + user, userDetails)

@@ -101,11 +101,10 @@ function AllRegisteredMemebersDisplay() {
     }
 
     const updateUserRoles = (id) => {
-        console.log("user id" , id)
         const user = id;
         // create session
         window.sessionStorage.setItem(
-            "loggeduser",
+            "loggedUser",
             JSON.stringify(user)
         );
         window.location = '/user-admin-update-user-role';
