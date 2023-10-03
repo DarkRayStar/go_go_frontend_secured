@@ -29,7 +29,7 @@ function UserProfile(props) {
         const user = JSON.parse(sessionStorage.getItem("loggedUser"));
 
         try {
-            const response = await axios.get('http://localhost:5050/user/' + user);
+            const response = await axios.get('http://localhost:5050/user/' + user._id);
             setFirstName(response.data.firstName);
             setLastName(response.data.lastName);
             setMobileNumber(response.data.mobileNumber);
@@ -75,7 +75,7 @@ function UserProfile(props) {
                 const user = JSON.parse(sessionStorage.getItem("loggedUser"));
               
 
-                axios.delete("http://localhost:5050/user/" + user)
+                axios.delete("http://localhost:5050/user/" + user._id)
                     .then((res) => {
                         Swal.fire({
                             title: 'Deleted!',
