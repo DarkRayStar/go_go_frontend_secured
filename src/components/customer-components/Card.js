@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import Cards from 'react-credit-cards'
+import React from 'react';
+import Cards from 'react-credit-cards';
+import styled from 'styled-components';
 
 const Container = styled.div`
   .rccs {
@@ -245,14 +245,7 @@ const Container = styled.div`
     width: 100%;
   }
   .rccs__signature {
-    background: repeating-linear-gradient(
-      0.1deg,
-      #fff 20%,
-      #fff 40%,
-      #fea 40%,
-      #fea 44%,
-      #fff 44%
-    );
+    background: repeating-linear-gradient(0.1deg, #fff 20%, #fff 40%, #fea 40%, #fea 44%, #fff 44%);
     height: 18%;
     left: 5%;
     position: absolute;
@@ -284,10 +277,10 @@ const Container = styled.div`
     font-weight: 700;
     opacity: 1 !important;
   }
-`
+`;
 
-export default props => (
-    <Container>
-        <Cards {...props} />
-    </Container>
-)
+export default (props) => (
+  <Container>
+    <Cards {...props} />
+  </Container>
+);

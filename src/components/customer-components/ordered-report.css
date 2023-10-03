@@ -1,28 +1,27 @@
 .backLink {
-    text-decoration: none;
-    padding-top: 35px;
-    float: left;
+  text-decoration: none;
+  padding-top: 35px;
+  float: left;
 }
 
 .userReportContainer {
-    margin-bottom: 60px;
+  margin-bottom: 60px;
 }
 
 @media print {
-    body * {
-        visibility: hidden;
-    }
+  body * {
+    visibility: hidden;
+  }
 
-    .section-to-print,
-    .section-to-print * {
-        visibility: visible;
-    }
+  .section-to-print,
+  .section-to-print * {
+    visibility: visible;
+  }
 
-    .section-to-print {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-
-    }
+  .section-to-print {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
 }

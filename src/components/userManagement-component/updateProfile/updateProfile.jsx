@@ -78,7 +78,8 @@ const UpdateUserProfile = () => {
             address: address,
             district: district,
             zipCode: zipCode,
-            image: image
+            image: image,
+            userRole : "User"
         }
 
         const user = JSON.parse(sessionStorage.getItem("loggeduser"));

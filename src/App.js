@@ -20,6 +20,7 @@ import UpdateUserProfile from "./components/userManagement-component/updateProfi
 import userAdminDashboard from "./components/userManagement-component/admin/userAdminDashboard";
 import AllRegisteredMemebersDisplay from "./components/userManagement-component/admin/viewAllMembers/allMembersRetrieve";
 import UserAdminPrintingReport from "./components/userManagement-component/admin/reportPrint/userAdminReport";
+import UpdateUserRole from "./components/userManagement-component/admin/updateuserRole/UpdateUserRole";
 
 //Delivery Service
 import DeliveryDashboard from "./components/delivery-components/delivery-dashboard-component";
@@ -39,6 +40,7 @@ import HomePageComponent from "./components/storeAdmin-components/homePageCompon
 import ItemDetails from "./components/storeAdmin-components/itemDetails";
 import DeliveryInformation from "./components/delivery-components/delivery-information-component";
 import StoreAdminReport from "./components/storeAdmin-components/storeAdmin-report.component";
+
 <link rel="stylesheet" href="./" />;
 
 function App() {
@@ -57,6 +59,7 @@ function App() {
           <Route path="/user-admin-dashboard" component={userAdminDashboard} />
           <Route path="/registered-members" component={AllRegisteredMemebersDisplay} />
           <Route path="/user-admin-report" component={UserAdminPrintingReport} />
+          <Route path="/user-admin-update-user-role" component={UpdateUserRole} />
 
           {/* Customer */}
           <Route path="/cart/view/" component={ViewCart} />

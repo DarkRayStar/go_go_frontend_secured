@@ -21,37 +21,52 @@ function AllRegisteredMemebersDisplay() {
         {
             name: 'Images',
             selector: row => <img alt="itemimage" width={100} height={100} src={row.image} />,
-            width: '200px'
+            width: '180px'
         },
         {
             name: 'First Name',
             selector: row => row.firstName,
             sortable: true,
-            width: "170px"
+            width: "120px"
         },
         {
             name: 'Last name',
             selector: row => row.lastName,
-            width: '160px'
+            width: '200px'
+        },
+        {
+            name: 'User Role',
+            selector: row => row.userRole,
+            width: '150px'
         },
         {
             name: 'Email',
             selector: row => row.email,
             sortable: true,
-            width: '350px'
+            width: '280px'
 
         },
         {
             name: 'Registered Date',
-            selector: row => row.registeredDate,
+            //selector: row => row.registeredDate,
+            selector: row => {
+                const date = new Date(row.registeredDate);
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            },
             sortable: true,
-            width: '250px'
+            width: '150px'
 
         },
         {
             name: 'Action',
             cell: (row) =>
                 <>
+                    <Fragment>
+                        <button onClick={() => updateUserRoles(row._id)} type="button" className="btn btn-outline-warning btn-sm" > Update </button>
+                    </Fragment>
                     <Fragment>
                         <button onClick={() => onSubmit(row._id)} type="button" className="btn btn-outline-danger btn-sm" > Delete</button>
                     </Fragment>
@@ -83,6 +98,17 @@ function AllRegisteredMemebersDisplay() {
 
             }
         })
+    }
+
+    const updateUserRoles = (id) => {
+        console.log("user id" , id)
+        const user = id;
+        // create session
+        window.sessionStorage.setItem(
+            "loggeduser",
+            JSON.stringify(user)
+        );
+        window.location = '/user-admin-update-user-role';
     }
 
 
