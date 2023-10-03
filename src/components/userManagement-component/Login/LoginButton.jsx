@@ -31,19 +31,25 @@ const LoginButton = () => {
                 fetchedUser = response.data;
               });
 
+              window.sessionStorage.setItem(
+                "loggedUser",
+                JSON.stringify(fetchedUser)
+              );
+
             try {
+              
+
               setTimeout(() => {
                 if (fetchedUser.userRole === "User Admin") {
+                  var x = ""
                   window.location = "/user-admin-dashboard";
                 } else if (fetchedUser.userRole === "Store Admind") {
                   window.location = "/storeAdmindash";
                 } else if (fetchedUser.userRole === "Delivery Admin") {
                   window.location = "/delivery-home";
                 } else {
-                  window.sessionStorage.setItem(
-                    "loggedUser",
-                    JSON.stringify(fetchedUser._id)
-                  );
+                  
+                  
                   if (fetchedUser.message == "no-users") {
                     window.alert(
                       "You are not previously registered. Please Register."

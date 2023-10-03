@@ -49,7 +49,7 @@ const UpdateUserProfile = () => {
     const getUser = async () => {
         try {
             const user = JSON.parse(sessionStorage.getItem("loggedUser"));
-            const response = await axios.get('http://localhost:5050/user/' + user);
+            const response = await axios.get('http://localhost:5050/user/' + user._id);
             setFirstName(response.data.firstName);
             setLastName(response.data.lastName);
             setMobileNumber(response.data.mobileNumber);
@@ -85,7 +85,7 @@ const UpdateUserProfile = () => {
         const user = JSON.parse(sessionStorage.getItem("loggedUser"));
 
 
-        axios.post('http://localhost:5050/user/update-profile/' + user, userDetails)
+        axios.post('http://localhost:5050/user/update-profile/' + user._id, userDetails)
 
             .then((res) => {
 
