@@ -25,7 +25,8 @@ const Registration = () => {
         email: "",
         password: "",
         registeredDate: regiDate,
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMDoZqGk6An-DWrwWp2AQ1a2aug6xZ_IQSQWMO-1Cj1p0mwr2lPHLNWGbQknO-671N5es&usqp=CAU"
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMDoZqGk6An-DWrwWp2AQ1a2aug6xZ_IQSQWMO-1Cj1p0mwr2lPHLNWGbQknO-671N5es&usqp=CAU",
+        userRole: "User"
     });
 
 
@@ -73,7 +74,7 @@ const Registration = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log("user regidata", data)
         try {
             const url = "http://localhost:5050/user/registration";
             const { data: res } = await axios.post(url, data);
