@@ -1,13 +1,13 @@
 import { Form, Button, Row, Col, Container } from "react-bootstrap";
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import NavBarGoGo from "../../navigatonBar/navbarGoGo";
+import NavBarGoGo from "../../../../components/navigatonBar/navbarGoGo";
 import styles from "./styles.module.css";
 import Swal from "sweetalert2";
 
-const UpdateUserProfile = () => {
+const UpdateUserRole = () => {
 
-    const options = ["Colombo", "Gampaha", "Kalutara", "Kandy", "Matale", "Nuwara Eliya", "Galle", "Matara", "Hambantota", "Jaffna", "Kilinochchi", "Mannar", "Vavuniya", "Mullaitivu", "Batticaloa", "Ampara", "Trincomalee", "Kurunegala", "Puttalam", "Anuradhapura", "Polonnaruwa", "Badulla", "Moneragala", "Ratnapura", "Kegalle"];
+    const options = ["User", "Delivery Admin", "Store Admind", "User Admin"];
 
     //state variables
     let [firstName, setFirstName] = useState("");
@@ -18,37 +18,20 @@ const UpdateUserProfile = () => {
     let [district, setDistrict] = useState("");
     let [zipCode, setZipCode] = useState("");
     let [image, setImage] = useState("");
+    let [email, setEmail] = useState("");
+    let [userRole, setUserRole] = useState(options[0]);
 
     // Dealing with field changes to update state
-    const firstNameUpdate = (event) => {
-        setFirstName(event.target.value)
+    const userRoleUpdate = (event) => {
+        setUserRole(event.target.value)
     }
-    const lastNameUpdate = (event) => {
-        setLastName(event.target.value)
-    }
-    const mobileNumberUpdate = (event) => {
-        setMobileNumber(event.target.value)
-    }
-    const phoneNumberUpdate = (event) => {
-        setPhoneNumber(event.target.value)
-    }
-    const addressUpdate = (event) => {
-        setAddress(event.target.value)
-    }
-    const districtUpdate = (event) => {
-        setDistrict(event.target.value)
-    }
-    const zipCodeUpdate = (event) => {
-        setZipCode(event.target.value)
-    }
-    const imageUpdate = (event) => {
-        setImage(event.target.value)
-    }
+    
 
     const getUser = async () => {
         try {
             const user = JSON.parse(sessionStorage.getItem("loggeduser"));
-            const response = await axios.get('http://localhost:5050/user/' + user._id);
+            console.log("user id: ", user);
+            const response = await axios.get('http://localhost:5050/user/' + user);
             setFirstName(response.data.firstName);
             setLastName(response.data.lastName);
             setMobileNumber(response.data.mobileNumber);
@@ -57,6 +40,8 @@ const UpdateUserProfile = () => {
             setDistrict(response.data.district);
             setZipCode(response.data.zipCode);
             setImage(response.data.image);
+            setEmail(response.data.email);
+            setUserRole(response.data.userRole);
         } catch (err) {
             //console.log(err);
         }
@@ -78,13 +63,13 @@ const UpdateUserProfile = () => {
             district: district,
             zipCode: zipCode,
             image: image,
-            userRole : "User"
+            userRole: userRole
         }
 
         const user = JSON.parse(sessionStorage.getItem("loggeduser"));
 
 
-        axios.post('http://localhost:5050/user/update-profile/' + user._id, userDetails)
+        axios.post('http://localhost:5050/user/update-profile/' + user, userDetails)
 
             .then((res) => {
 
@@ -96,7 +81,7 @@ const UpdateUserProfile = () => {
                 })
 
                 setTimeout(() => {
-                    window.location = "/user-profile";
+                    window.location = "/registered-members";
                 }, 2000)
             })
 
@@ -104,7 +89,7 @@ const UpdateUserProfile = () => {
     }
 
     const CancelButton = () => {
-        window.location = "/user-profile";
+        window.location = "/registered-members";
     }
 
     return (
@@ -123,7 +108,7 @@ const UpdateUserProfile = () => {
 
                     <div className={styles.right}>
 
-                        <h1 style={{ marginTop: "50px", marginBottom: "30px" }}>Update Profile</h1>
+                        <h1 style={{ marginTop: "50px", marginBottom: "30px" }}>Update User Role</h1>
 
                         <Form onSubmit={handleSubmit}>
                             <Container>
@@ -135,10 +120,10 @@ const UpdateUserProfile = () => {
                                             type="text"
                                             placeholder='Your First Name'
                                             name='firstName'
-                                            onChange={firstNameUpdate}
                                             value={firstName}
                                             required
                                             className={styles.input}
+                                            readOnly
                                         />
                                     </Col>
                                     <Col xs={9} md={6}>
@@ -147,67 +132,36 @@ const UpdateUserProfile = () => {
                                             type="text"
                                             placeholder='Your Last name'
                                             name='lastName'
-                                            onChange={lastNameUpdate}
                                             value={lastName}
                                             required
                                             className={styles.input}
+                                            readOnly
                                         />
                                     </Col>
                                 </Row>
 
                                 <Row>
                                     <Col xs={9} md={6}>
-                                        <label style={{ fontWeight: "bold" }}>Mobile Number    :</label><br></br>
+                                        <label style={{ fontWeight: "bold" }} >Email    :</label><br></br>
                                         <input
                                             type="text"
-                                            placeholder='Mobile Number'
-                                            name='mobileNumber'
-                                            maxLength="10"
-                                            title="Cannot exceed 10 characters."
-                                            onChange={mobileNumberUpdate}
-                                            value={mobileNumber}
+                                            placeholder='00000'
+                                            name='email'
+                                            value={email}
                                             required
                                             className={styles.input}
+                                            readOnly
                                         />
                                     </Col>
                                     <Col xs={9} md={6}>
-                                        <label style={{ fontWeight: "bold" }}>Phone Number    :</label><br></br>
-                                        <input
-                                            type="text"
-                                            placeholder='Phone Number'
-                                            name='phoneNumber'
-                                            maxLength="10"
-                                            title="Cannot exceed 10 characters."
-                                            onChange={phoneNumberUpdate}
-                                            value={phoneNumber}
-                                            required
-                                            className={styles.input}
-                                        />
-                                    </Col>
-                                </Row>
-
-                                <Row>
-                                    <Col xs={9} md={6}>
-                                        <label style={{ fontWeight: "bold" }} >Address    :</label><br></br>
-                                        <input
-                                            type="text"
-                                            placeholder='No:170/A, Kandy'
-                                            name='address'
-                                            onChange={addressUpdate}
-                                            value={address}
-                                            required
-                                            className={styles.input}
-                                        />
-                                    </Col>
-                                    <Col xs={9} md={6}>
-                                        <label style={{ fontWeight: "bold" }} >District    :</label><br></br>
+                                        <label style={{ fontWeight: "bold" }} >User Role    :</label><br></br>
                                         <select
                                             className={styles.input}
-
-                                            name='district'
-                                            value={district}
-                                            onChange={districtUpdate}>
-
+                          
+                                            name='userRole'
+                                            value={userRole}
+                                            onChange={userRoleUpdate}>
+                                            
                                             {options.map((value) => (
                                                 <option value={value} key={value}>
                                                     {value}
@@ -215,38 +169,9 @@ const UpdateUserProfile = () => {
                                             ))}
                                         </select>
                                     </Col>
+                                    
                                 </Row>
-
-                                <Row>
-                                    <Col xs={9} md={6}>
-                                        <label style={{ fontWeight: "bold" }} >Postal/Zip Code    :</label><br></br>
-                                        <input
-                                            type="text"
-                                            placeholder='00000'
-                                            name='zipCode'
-                                            onChange={zipCodeUpdate}
-                                            value={zipCode}
-                                            required
-                                            className={styles.input}
-                                        />
-                                    </Col>
-                                    <Col xs={9} md={6}>
-                                        <label style={{ fontWeight: "bold" }} >Image URL    :</label><br></br>
-                                        <input
-                                            type="text"
-                                            name='image'
-                                            onChange={imageUpdate}
-                                            value={image}
-                                            required
-                                            className={styles.input}
-                                        />
-                                    </Col>
-                                </Row>
-                                {/* <Row>
-                                    <Button variant="primary" type="submit">
-                                        Update Profile
-                                    </Button>
-                                </Row> */}
+                                
                                 <table style={{ marginBottom: "50px", marginTop: "20px", marginLeft: "100px" }}>
                                     <tr>
                                         <td><button type='submit' style={{ marginBottom: "50px", marginTop: "35px" }} className={styles.g_button}>Update</button></td>
@@ -263,4 +188,4 @@ const UpdateUserProfile = () => {
     )
 }
 
-export default UpdateUserProfile;
+export default UpdateUserRole;

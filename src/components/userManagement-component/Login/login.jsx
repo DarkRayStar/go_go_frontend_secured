@@ -36,11 +36,11 @@ const SignIn = () => {
       window.sessionStorage.setItem("loggeduser", JSON.stringify(res.user));
 
       setTimeout(() => {
-        if (res.user.email === "kamal@gmail.com") {
+        if (res.user.userRole === "User Admin") {
           window.location = "/user-admin-dashboard";
-        } else if (res.user.email === "tharinduadmin@gmail.com") {
+        } else if (res.user.userRole === "Store Admind") {
           window.location = "/storeAdmindash";
-        } else if (res.user.email === "dulshanalaha@gmail.com") {
+        } else if (res.user.userRole === "Delivery Admin") {
           window.location = "/delivery-home";
         } else {
           window.location = "/userHome";
